@@ -1,0 +1,273 @@
+<?php
+$productsConfigName = 'products';
+$productsConfig = D("Basic")->get_basic_config($productsConfigName);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{$productsConfig.name} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{$productsConfig.description}">
+    <meta name="keywords" content="{$productsConfig.keywords}">
+
+    <link rel="icon" href="__ROOT__/favicon.ico">
+
+    <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/font-awesome.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--自定义的CSS，一定要放在bootstrap后面-->
+    <link href="__PUBLIC__/css/common.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fbfbfb
+        }
+        h1 {
+            font-size: 30px;
+            background-color: #323232;
+            color: #fff;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+
+        .c-mb {
+            margin-bottom: 20px;
+        }
+
+        @media screen and (min-width: 768px) {
+            .c-mb {
+                margin-bottom: 100px;
+            }
+        }
+
+        .thumbnail > .caption {
+            padding-top: 0;
+            padding-bottom: 13px;
+        }
+
+        .thumbnail > .caption > span.product-name {
+            display: block;
+            height: 15px;
+            width: 100%;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+        }
+
+        .thumbnail > .caption > span.name {
+            display: block;
+            height: 32px;
+            text-align: center;
+            font-size: 30px;
+            line-height: 30px;
+            margin: 0;
+            color: #323232;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            .thumbnail > .caption > span.name {
+                font-size: 20px;
+            }
+        }
+        @media screen and (max-width: 767px){
+            .thumbnail > .caption{padding-left: 0;padding-right: 0}
+            .thumbnail > .caption > span.name {
+                height: 32px;
+                font-size:24px;
+                line-height: 24px;
+            }
+        }
+        @media screen and (max-width: 480px){
+            h1{font-size: 20px;margin: 10px auto; padding: 6px 0;}
+            .thumbnail{margin-bottom: 10px}
+            .thumbnail > .caption > span.name {
+                height: auto;
+                font-size:16px;
+                line-height: 18px;
+            }
+            /*双数*/
+            .xxs-padding:nth-of-type(even){
+                padding-left: 5px;
+            }
+            /*单数*/
+            .xxs-padding:nth-of-type(odd){
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<include file="Index/nav"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="center-block">
+            <img src="__PUBLIC__/img/home/products-banner.jpg"
+                 alt="led linear lights"
+                 class="img-responsive center-block"/>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <img src="__PUBLIC__/img/home/products-top.png" alt="led linear lights" class="img-responsive"
+         style="margin-top:-15%; "/>
+</div>
+
+<!--products展示-->
+<div class="container c-mb">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="text-center">PRODUCTS</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg  ">
+                <a href="javascript:void(0); " disabled="true" title='High Bay Lights' style="cursor: not-allowed"><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/High-Bay-Lights.jpg"
+                        alt="ltechlighting High Bay Lights, UFO lights"></a>
+                <div class="caption">
+                    <span class='name'>High Bay Lights</span>
+                    <span class="product-name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/type','id=4')}" title=' LED Neon lights ' ><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/neon-lights.jpg"
+                        alt="ltechlighting LED Neon lights "></a>
+                <div class="caption">
+                    <span class='name'> LED Neon Lights </span>
+                    <span class="product-name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg  ">
+                <a href="javascript:void(0); " title='coming soon' style="cursor: not-allowed"><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/comingsoon.jpg"
+                        alt="ltechlighting new  "></a>
+                <div class="caption">
+                    <span class='name'>Coming Soon</span>
+                    <span class="product-name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/type','id=2')}" title='LED Linear Lights'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/led-linear-lights.jpg"
+                        alt="LED Linear Lights "></a>
+                <div class="caption">
+                    <span class='name' title="LED Linear Lights">LED Linear Lights</span>
+                    <span class="product-name"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/type','id=1')}" title='LED T8 Tube'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/led-t8-tube.jpg"
+                        alt="LED T8 Tube "></a>
+                <div class="caption">
+                    <span class='name'>LED T8 Tube</span>
+                    <span class="product-name"></span>
+                </div>
+            </div>
+        </div>
+        <!--TROFFERS系列产品-->
+
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=6')}" title='LED Troffers LT1A-2X4'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1a-2x4.jpg"
+                        alt="LED Troffers LT1A-2X4"></a>
+                <div class="caption">
+                    <span class="product-name">LT1A-2X4</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=7')}" title='LED Troffers LT1A-2X2'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1a-2x2.jpg"
+                        alt="LED Troffers LT1A-2X2"></a>
+                <div class="caption">
+                    <span class="product-name">LT1A-2X2</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=8')}" title='LED Troffers LT1A-1X4'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1a-1x4.jpg"
+                        alt="LED Troffers LT1A-1X4"></a>
+                <div class="caption">
+                    <span class="product-name">LT1A-1X4</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=9')}" title='LED Troffers LT1C-2X4'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1c-2x4.jpg"
+                        alt="LED Troffers LT1C-2X4"></a>
+                <div class="caption">
+                    <span class="product-name">LT1C-2X4</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=10')}" title='LED Troffers LT1C-2X2'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1c-2x2.jpg"
+                        alt="LED Troffers LT1C-2X2"></a>
+                <div class="caption">
+                    <span class="product-name">LT1C-2X2</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-4 col-xs-6 xxs-padding">
+            <div class="thumbnail thumbnail-bg ">
+                <a href="{:U('Products/product','id=11')}" title='LED Troffers LT1C-1X4'><img
+                        class="img-responsive" src="__PUBLIC__/img/home/products/lt1c-1x4.jpg"
+                        alt="LED Troffers LT1C-1X4"></a>
+                <div class="caption">
+                    <span class="product-name">LT1C-1X4</span>
+                    <span class='name'>LED Troffers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="bottom-container">
+    <include file="Index/bottom"/>
+    <include file="Index/share"/>
+</div>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__PUBLIC__/js/Home/jquery.goup.js"></script>
+
+<include file="Index/footer"/>

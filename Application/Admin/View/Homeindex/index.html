@@ -1,0 +1,151 @@
+<include file="block/header"/>
+<include file="block/sidebar"/>
+<!--右边主要内容显示区开始-->
+<div class="col-sm-9 col-md-9 col-lg-10">
+    <section class="mainbody">
+        <ol class="breadcrumb">
+            当前位置：
+            <li><a href="{:U('Index/index')}"><i class='fa fa-home'></i> 首页</a></li>
+            <li class="active"><i class='fa fa-info  '></i> 前台首页管理 </li>
+        </ol> 
+
+        <h2 class=" tab-head">
+            <span class="active" data-target="banner">banner管理</span>
+            <span class="" data-target="advs">首页中间广告位管理</span>
+            <span class="" data-target="catalogue">Catalogue管理</span>
+        </h2>
+        <div class="tab-pane" id="banner">
+            <button class="btn btn-default  add" id="addBanner"><i class="fa fa-plus"></i>添加banner</button>
+            <button class="btn btn-default  add" id="listorderBannerUpdate" data-model="Banner"><i class="fa fa-refresh fa-spin"></i>更新banner排序</button>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="80">排序</th>
+                            <th>banner ID</th>
+                            <th>banner 名</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th>极小图</th>
+                            <th>小图</th>
+                            <th>中图</th>
+                            <th>大图</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <form id="listorderBannerForm">
+                        <foreach name="banner" item="banner">
+                            <tr>
+                                <td><input type="text" size="5" name="{$banner.id}" value="{$banner.listorder}" maxlength="4"/></td>
+                                <td>{$banner.id}</td>
+                                <td>{$banner.name}</td>
+                                <td>{$banner.create_time|date="Y-m-d H:i",###}</td>
+                                <td>{$banner.update_time|date="Y-m-d H:i",###}</td>
+                                <td>{$banner.img_xs|hasImg}</td>
+                                <td>{$banner.img_sm|hasImg}</td>
+                                <td>{$banner.img_md|hasImg}</td>
+                                <td>{$banner.img_lg|hasImg}</td>
+                                <td><span id="updateStatus" data-model="Banner" data-id = "{$banner.id}" data-behavior = "更改状态"  <if condition="$banner.status eq 1">data-status="0" <else/> data-status="1" </if>>{$banner.status|status}</span></td>
+                                <td>
+                                    <a id="editBanner"   class="edit" title="编辑"  data-behavior="编辑" data-id="{$banner.id}" ><i class="fa fa-edit"></i> 编辑</a>
+                                    <a id="deleteBanner" class="delete" title="删除" data-behavior="删除" data-id="{$banner.id}" data-status = "-1" data-model="Banner"><i class="fa fa-trash"></i> 删除</a>
+                                </td>
+                            </tr>
+                        </foreach>
+                    </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="table-responsive tab-pane hide" id="advs" style="margin-top: 50px;">
+
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>name</th>
+                        <th>产品类型</th>
+                        <th class="text-center">图片</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>操作</th>
+
+                    </tr>
+                <thead>
+                <tbody>
+                <volist name="advs" id="adv">
+                    <tr>
+                        <td>{$adv.id}</td>
+                        <td>{$adv.name}</td>
+                        <td>{$adv.type|getTypeName = $type,###}</td>
+                        <td ><div style="max-width: 300px; margin: 0 auto;"><img src="{$adv.thumb}" class="img-responsive"></div></td>
+                        <td>{$adv.title}</td>
+                        <td>{$adv.description} </td>
+                        <td>
+                            <a id="editAdv"   class="edit" title="编辑"  data-behavior="编辑" data-id="{$adv.id}" ><i class="fa fa-edit"></i> 编辑</a>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+
+        
+        <div class="tab-pane hide" id="catalogue" style="margin-top: 50px;">
+        <form id="editForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">文件名：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input type="text" class="form-control" maxlength="255" autocomplete="off"  placeholder="请输入文件名" name ="name" id="name" value="{$catalogue.name}">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Catalogue：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="uploadFile_upload"  type="file" multiple="true" >
+                    <div id="uploadFile_show" style="display: none;margin-bottom: 10px;" class="col-sm-6"></div>
+                    
+                    <input id="path" name="path" class="form-control" type="text" multiple="true" value="{$catalogue.path}" autocomplete="off" placeholder="如果文件过大上传失败，就请通过ftp上传后把文件路径粘贴到这里，然后保存">
+                </div>
+            </div>    
+                
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <input type="button" class="form-control btn-success btn-submit" id="btnSubmit" value="保存">
+                </div>               
+            </div> 
+        </form>
+        </div>
+    </section>
+</div><!--col-sm-3 col-md-9 col-lg-10 end -->
+<!--右边主要内容显示区结束-->
+</div><!--row end 开始标签在sidebar -->
+</div><!--container-fluid  end 开始标签在sidebar -->
+
+
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__PUBLIC__/js/layer/dialog.js"></script>
+<script src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+<!--每个方法的对应的模板部分的自定义javascript放在这里-->
+<script>
+    var SCOPE = {
+        add_banner_url: "{:U('Homeindex/addBanner')}",
+        edit_banner_url: "{:U('Homeindex/editBanner')}",
+        edit_adv_url: "{:U('Homeindex/editAdv')}",
+        set_status_url: "{:U('Homeindex/setStatus')}",
+        listorder_url: "{:U('Homeindex/listorder')}",
+        ajax_upload_file_url : "/Admin/Image/ajaxuploadCatalogue",//后台接口处理ajax上传的Catalogue
+        ajax_upload_swf : '__PUBLIC__/uploadify/uploadify.swf',
+        save_catalogue_url:"{:U('Homeindex/saveCatalogue')}"
+    };
+
+</script>
+<script src="__PUBLIC__/js/Admin/Homeindex.js"></script>
+</body>
+</html>
