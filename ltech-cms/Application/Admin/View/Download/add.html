@@ -1,0 +1,93 @@
+
+<include file="block/header"/>
+<include file="block/sidebar"/>
+<!--右边主要内容显示区开始-->
+<div class="col-sm-9 col-md-9 col-lg-10">
+    <section class="mainbody">
+        <ol class="breadcrumb">
+            当前位置：
+            <li><a href="{:U('index/index')}"><i class='fa fa-home'></i> 首页</a></li>
+            <li><a href="{:U('Download/index')}"><i class='fa fa-download'></i> 下载管理</a></li>
+            <li class="active"><i class='fa fa-plus'></i> 添加下载文件 </li>
+        </ol>
+         <form id="editForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">文件名：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input type="text" class="form-control" maxlength="255" autocomplete="off"  placeholder="请输入文件名" name ="name" id="name" value="">
+                </div>
+            </div>
+             
+            <div class="form-group">
+                 <label class="col-sm-3 col-lg-2 control-label">产品类型：</label>
+                 <div class="col-sm-9 col-lg-6">
+                     <select class="form-control" name="products_type" id="productsType">
+                         <option  value=""> 产品类型 </option>
+                         <volist name="productsType" id="vo">
+                             <option value="{$vo.id}">{$vo.name}</option>
+                         </volist>
+                     </select>  
+                 </div>
+            </div>
+            
+            <div class="form-group">
+                 <label class="col-sm-3 col-lg-2 control-label">产品名：</label>
+                 <div class="col-sm-9 col-lg-6">
+                     <select class="form-control" name="products_id" id="productsId">
+                        <option  value=""> 产品名 </option>
+                        
+                     </select>
+                 </div>
+            </div>
+             
+            <div class="form-group">
+                 <label class="col-sm-3 col-lg-2 control-label">上传文件：</label>
+                 <div class="col-sm-9 col-lg-6">
+                    <input id="uploadFile_upload"  type="file" multiple="true" >
+                    <div id="uploadFile_show" style="display: none;" class="col-sm-6"></div>
+                    <input id="path" name="path" type="hidden" multiple="true" value="">
+                 </div>
+            </div> 
+             
+            <div class="form-group">
+                <label class="col-sm-3  col-lg-2 control-label">文件状态：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <label class='radio-inline'>
+                        <input type="radio" name="status" value="1" checked >正常
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0" >关闭
+                    </label>
+                </div>
+            </div>
+             
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <input type="button" class="form-control btn-success btn-submit" id="btnSubmit" value="添加">
+                </div>               
+            </div> 
+         </form>
+    </section>
+</div><!--col-sm-3 col-md-9 col-lg-10 end -->
+<!--右边主要内容显示区结束-->
+</div><!--row end 开始标签在sidebar -->
+</div><!--container-fluid  end 开始标签在sidebar -->
+
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+<script src="__PUBLIC__/js/Admin/download.js"></script>
+<!--每个方法的对应的模板部分的自定义javascript放在这里-->    
+<script>
+    var SCOPE = {
+        save_url : "{:U('Download/add')}"  ,
+        jump_url : "{:U('Download/index')}",
+        ajax_get_products: "{:U('Download/ajaxGetProducts')}",
+        ajax_upload_file_url : "/Admin/Image/ajaxuploadfile",//后台接口处理ajax上传的文件
+        ajax_upload_swf : '__PUBLIC__/uploadify/uploadify.swf'
+    };
+    
+    
+</script>
+
+<include file="block/footer"/>   

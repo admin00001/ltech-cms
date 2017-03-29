@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Projects | ltechlighing projects</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">      
+        <meta name="description" content="there are our company projects after ltechlighting was set up.">
+        <meta name="keywords" content="projects  led lighting linear lights tube t8">      
+
+        <link rel="icon" href="__ROOT__/favicon.ico">
+
+        <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/font-awesome.css" rel="stylesheet" >
+
+        <!--[if lt IE 9]>
+          <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!--自定义的CSS，一定要放在bootstrap后面-->
+        <link href="__PUBLIC__/css/common.css" rel="stylesheet" >
+        <link href="__PUBLIC__/css/project-news.css" rel="stylesheet" >
+    </head>
+    <body>
+    <include file="Index/nav" />
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-responsive" src="__PUBLIC__/img/home/about-us/about-us_03.jpg"  alt="ltechlighting produce basic">
+            </div>
+        </div>
+        <div class="row row-block">
+            <div class="col-xs-12">
+                <div class="news-breadcrumb">
+                    <a href="/" title="Home">Home</a><span>/</span>
+                    <a href="{:U('Index/about')}" title="About us">About us</a><span>/</span>
+                    <a class="active" title="Projects">Projects</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-lg-3 ">
+                <include file="Projects/lastestproject" />
+                <div class="border">
+                    <div class="input-container center-block">
+                        <input id="searchValue" type="text" class="input-news center-block" value="{$keyword}">
+                        <div class="search-icon"><i class="glyphicon glyphicon-search"></i></div>
+                    </div>
+                    <button id="search" class="btn btn-download btn-news center-block box-shadow" >Search</button>
+                    <div class="input-container center-block text-center" style="margin-top: 50px;">
+                        <b>CONTACT US BY TELEPHONE</b>
+
+                        <span class="contactus">+86 756-8676220</span>
+                    </div>
+
+                </div>    
+                <div class="border" style="background-color: #eee;">
+                    <div class="input-container center-block text-center">
+                        <b>DOWNLOAD OUR CATALOGUE</b>
+                    </div>
+                    <div class="input-container center-block text-center catalogue-download box-shadow" >
+                        <a href='{$catalogue.path}'> <i class="fa fa-file-pdf-o active"></i> 2016 CATALOGUE.PDF</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-lg-9">
+                <if condition="$res eq 'no'"><p class='text-center' style="color: #e62129">Sorry,do not exists this project.</p></if>
+                <foreach name="Projectslist" item="list">
+                    <div class="row " style="margin-bottom: 30px;">
+                        <div class="col-xs-5 col-sm-4 col-lg-3">
+                            <a href="{:U('Projects/detail',array('id' => $list[projects_id]))}"><img class="img-responsive center-block" src="{$list.thumb}" alt="{$list.name}"></a>
+                        </div>
+                        <div class="col-xs-7 col-sm-8 col-lg-9">
+                            <a href="{:U('Projects/detail',array('id' => $list[projects_id]))}"><p class="projects-name">{$list.name}</p></a>
+                            <p>{$list.description}</p>
+                        </div>
+                    </div>
+                </foreach>
+                
+                <div class='page'>{$pager}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-container">
+        <include file="Index/bottom"/>
+        <include file="Index/share"/>
+    </div>
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/Home/jquery.goup.js"></script>
+    <script>
+        var SCOPE = {search_url:"{:U('Projects/index')}"};
+    </script>
+    <include file="Index/footer" />

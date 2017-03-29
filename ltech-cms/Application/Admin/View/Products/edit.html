@@ -1,0 +1,313 @@
+<include file ="block/header"/>
+<include file ="block/sidebar"/>
+
+<!--右边主要内容显示区开始-->
+<div class="col-sm-9 col-md-9 col-lg-10">
+    <section class="mainbody">
+        <ol class="breadcrumb">
+            当前位置：
+            <li><a href="{:U('index/index')}"><i class='fa fa-home'></i> 首页</a></li>
+            <li><a href="{:U('Products/index')}"><i class='fa fa-product-hunt'></i>  产品管理 </a></li>
+            <li class="active"><i class="fa fa-edit"></i>编辑产品</li>          
+        </ol> 
+        
+        <form id="editForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">产品名：</label>
+                <div class="col-sm-6 ">
+                    <input type="text" class="form-control" maxlength="50"  placeholder="请输入产品名 限50字符" name ="name" value="{$products.name}">
+                </div>
+            </div>
+            
+            <div class="form-group" >
+                <label class="col-sm-3 col-lg-2 control-label">产品类型：</label>
+                <div class="col-sm-6 ">
+                    <volist name='type' id ="vo">
+                        <label class=" radio-inline">
+                            <input type="radio" value="{$vo.id}" name="type" <if condition="$products.type eq $vo['id']">checked</if>> {$vo.name}
+                        </label>  
+                    </volist>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">title：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input type="text" class="form-control" maxlength="70" placeholder="产品title 最好55字符内 限70字符" name="title" value="{$products.title}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">keywords：</label>
+                <div class="col-sm-9 col-lg-10">
+                    <input type="text" class="form-control" maxlength="200" placeholder="请输入keywords 限200字符" name="keywords" value="{$products.keywords}">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">description：</label>
+                <div class="col-sm-9 col-lg-10">
+                    <input type="text" class="form-control" maxlength="200" placeholder="请输入description 限200字符" name="description" value="{$products.description}">
+                </div>
+            </div>
+            
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">缩略图：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="thumb_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="thumb_img" src="{$products.thumb}" class="img-responsive" alt="" >
+                    <input id="thumb" name="thumb" type="hidden" multiple="true" value="{$products.thumb}">
+                </div>
+                          
+            </div>
+            <hr> 
+            
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品大图：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_main_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_main_img" src="{$products.img_main}" class="img-responsive" alt="" >
+                    <input id="img_main" name="img_main" type="hidden" multiple="true" value="{$products.img_main}">
+                </div>
+                
+            </div>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品描述一：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <textarea class="form-control description" name="description_one"  placeholder="产品描述一">{$products.description_one}</textarea>
+                </div>
+            </div>
+            <hr>
+
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品描述二：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <textarea class="form-control description" name="description_two"  placeholder="产品描述二">{$products.description_two}</textarea>
+                </div>
+            </div>
+            
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品应用场景图一：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_application_one_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_application_one_img" src="{$products.img_application_one}" class="img-responsive" alt="" >
+                    <input id="img_application_one" name="img_application_one" type="hidden" multiple="true" value="{$products.img_application_one}">
+                </div>
+                
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品应用场景图二：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_application_two_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_application_two_img" src="{$products.img_application_two}" class="img-responsive" alt="" >
+                    <input id="img_application_two" name="img_application_two" type="hidden" multiple="true" value="{$products.img_application_two}">
+                </div>
+                
+            </div>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品描述三：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <textarea class="form-control description" name="description_three"  placeholder="产品描述三">{$products.description_three}</textarea>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">相关产品图(310x170带边框)：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="family_products_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="family_products_img" src="{$products.family_products}" class="img-responsive" alt="" >
+                    <input id="family_products" name="family_products" type="hidden" multiple="true" value="{$products.family_products}">
+                </div>
+                          
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品浏览图一：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_small_one_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_small_one_img" src="{$products.img_small_one}" class="img-responsive" alt="" >
+                    <input id="img_small_one" name="img_small_one" type="hidden" multiple="true" value="{$products.img_small_one}">
+                </div>            
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品浏览图二：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_small_two_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_small_two_img" src="{$products.img_small_two}" class="img-responsive" alt="" >
+                    <input id="img_small_two" name="img_small_two" type="hidden" multiple="true" value="{$products.img_small_two}">
+                </div>
+                
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品浏览图三：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="img_small_three_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="img_small_three_img" src="{$products.img_small_three}" class="img-responsive" alt="" >
+                    <input id="img_small_three" name="img_small_three" type="hidden" multiple="true" value="{$products.img_small_three}">
+                </div>              
+            </div>
+            <hr>
+       
+            <div class="form-group">
+                <label for="featureEditor" class="col-sm-3 col-lg-2 control-label">Features:</label>
+                <div class="col-sm-9 col-lg-10">
+                    <textarea class="kindeditor form-control" id="featureEditor" name="features" >{$products.features}</textarea>
+                 </div>
+            </div>
+            
+            <hr>
+            <div class="form-group">
+              <label for="specification_features" class="col-sm-3 col-lg-2 control-label">Specification feature:</label>
+              <div class="col-sm-9 col-lg-10">
+                  <textarea class="kindeditor form-control" id="specification_features" name="specification_features" >{$products.specification_features}</textarea>
+              </div>
+            </div>
+            
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品数据图1（轮播必选）：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="data_banner_one_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="data_banner_one_img" src="{$products.data_banner_one}" class="img-responsive" alt="" >
+                    <input id="data_banner_one" name="data_banner_one" type="hidden" multiple="true" value="{$products.data_banner_one}">
+                </div>             
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品数据图2（轮播可选）：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="data_banner_two_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="data_banner_two_img" src="{$products.data_banner_two}" class="img-responsive" alt="" >
+                    <input id="data_banner_two" name="data_banner_two" type="hidden" multiple="true" value="{$products.data_banner_two}">
+                </div>             
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品数据图3（轮播可选）：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="data_banner_three_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="data_banner_three_img" src="{$products.data_banner_three}" class="img-responsive" alt="" >
+                    <input id="data_banner_three" name="data_banner_three" type="hidden" multiple="true" value="{$products.data_banner_three}">
+                </div>             
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品数据图4（轮播可选）：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="data_banner_four_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="data_banner_four_img" src="{$products.data_banner_four}" class="img-responsive" alt="" >
+                    <input id="data_banner_four" name="data_banner_four" type="hidden" multiple="true" value="{$products.data_banner_four}">
+                </div>             
+            </div>
+            <hr>
+            <div class="form-group ">
+                <label class="col-sm-3 col-lg-2 control-label">产品数据图5（轮播可选）：</label>
+                <div class="col-sm-9 col-lg-6">
+                    <input id="data_banner_five_upload"  type="file" multiple="true" >
+                    <img style="display: none" id="data_banner_five_img" src="{$products.data_banner_five}" class="img-responsive" alt="" >
+                    <input id="data_banner_five" name="data_banner_five" type="hidden" multiple="true" value="{$products.data_banner_five}">
+                </div>             
+            </div>
+            <hr>
+            <div class="form-group">
+              <label for="extra_one" class="col-sm-3 col-lg-2 control-label">额外添加一:</label>
+              <div class="col-sm-9 col-lg-10">
+                  <textarea class="kindeditor form-control" id="extra_one" name="extra_one" >{$products.extra_one}</textarea>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="extra_two" class="col-sm-3 col-lg-2 control-label">额外添加二:</label>
+              <div class="col-sm-9 col-lg-10">
+                  <textarea class="kindeditor form-control" id="extra_two" name="extra_two" >{$products.extra_two}</textarea>
+              </div>
+            </div>
+           
+            
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">产品状态：</label>
+                <div class="col-sm-6">
+                    <label class='radio-inline'>
+                        <input type="radio" name="status" value="1" <if condition ="$products.status eq 1">checked</if>>正常
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0" <if condition ="$products.status eq 0">checked</if>>关闭
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" name="products_id" value="{$products.products_id}">
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <input type="button" class="form-control btn-success btn-submit" id="btnSubmit" value="更新产品数据">
+                </div>               
+            </div>
+            
+        </form>
+    </section>
+</div><!--col-sm-3 col-md-9 col-lg-10 end -->
+<!--右边主要内容显示区结束-->
+</div><!--row end 开始标签在sidebar -->
+</div><!--container-fluid  end 开始标签在sidebar -->
+
+
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<!--每个方法的对应的模板部分的自定义javascript放在这里-->
+<script>
+    //在模板里面定义的u方法可以被解析成对应路由，如果是外部引入的js文件里面定义u方法就不会被解析
+   var SCOPE = {
+      save_url : "{:U('Admin/Products/add')}"  ,
+      jump_url : "{:U('Admin/Products/index')}",
+      ajax_upload_image_url : "/Admin/Image/ajaxuploadimage",//后台接口处理ajax上传的图片
+      ajax_upload_swf : '__PUBLIC__/uploadify/uploadify.swf'
+    };
+    //已经上传了图的地方就显示图片！
+   
+    $(function(){
+       showImg('thumb_img');
+       showImg('img_main_img');
+       showImg('img_application_one_img');
+       showImg('img_application_two_img');
+       showImg('family_products_img');
+       showImg('img_small_one_img');
+       showImg('img_small_two_img');
+       showImg('img_small_three_img');
+       showImg('data_banner_one_img');
+       showImg('data_banner_two_img');
+       showImg('data_banner_three_img');
+       showImg('data_banner_four_img');
+       showImg('data_banner_five_img');
+       
+    });
+    
+</script>
+<!--ajax上传缩略图js-->
+<script src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+<script src="__PUBLIC__/uploadify/image.js"></script>
+<!--引入kindeditor 编辑器js-->
+<script src="__PUBLIC__/kindeditor/kindeditor-all-min.js"></script>
+
+<!--对编辑器进行配置-->
+<script>
+    var options ={
+        uploadJson : '/Admin/image/kindupload',//后台接收上传文件的地址
+        resizeType:2,//文本框可否缩放，1代表只可高度缩放，默认2 高宽可缩放，0代表不可缩放
+        minWidth:320,//最小宽度
+        filePostName:'file',
+        filterMode:false,//false时允许输入任何代码 ，在代码模式下写的代码不会被过滤
+        themeType:'simple',//文本框样式可选simple 或者default 默认default
+        afterBlur : function(){this.sync();} ,//文本框失焦 就同步文本框的内容到value值里面
+        afterUpload:function(result){dialog.successTip('上传成功');}
+    };
+     KindEditor.ready(function(K) {
+                window.editor = K.create('#featureEditor',options);//feature编辑器
+                window.editor = K.create('#specification_features',options);
+                window.editor = K.create('#extra_one',options);
+                window.editor = K.create('#extra_two',options);
+                });
+</script>
+
+<include file="block/footer"/>

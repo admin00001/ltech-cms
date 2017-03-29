@@ -1,0 +1,239 @@
+<?php
+$productsConfigName = 'products';
+$productsConfig = D("Basic")->get_basic_config($productsConfigName);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{$productsConfig.name} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{$productsConfig.description}">
+    <meta name="keywords" content="{$productsConfig.keywords}">
+
+    <link rel="icon" href="__ROOT__/favicon.ico">
+
+    <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/font-awesome.css" rel="stylesheet" >
+    <!--banner插件css-->
+    <link href="__PUBLIC__/owl.carousel.2.0.0-beta.2.4/assets/owl.carousel.css" rel="stylesheet">
+    <link href="__PUBLIC__/owl.carousel.2.0.0-beta.2.4/assets/owl.theme.default.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--自定义的CSS，一定要放在bootstrap后面-->
+    <link href="__PUBLIC__/css/common.css" rel="stylesheet" >
+    <style>
+        /*产品类型页 轮播按钮样式*/
+        .owl-nav-container{position: relative;}
+        .owl-nav{
+            position:absolute;
+            top:50%;
+            left:0;
+            right:0;
+            transform: translateY(-50%);
+        }
+        .owl-nav .owl-next,.owl-nav .owl-prev{
+            position: relative;
+            color:#d0c8ba;
+            cursor:pointer;
+        }
+        .owl-nav .owl-next .fa-angle-right ,.owl-nav .owl-prev .fa-angle-left{
+            position:absolute;
+            top:50%;
+            transform: translateY(-50%);
+        }
+        .owl-nav .owl-prev .fa-angle-left{
+            left:-20px;
+        }
+        .owl-nav .owl-next .fa-angle-right{
+            right:-20px;
+        }
+
+        @media screen and (max-width:800px){
+            .owl-nav {
+                z-index: 99;
+            }
+            .owl-nav .owl-prev .fa-angle-left{
+                left:10px;
+                background-color: rgba(150,150,150,.6);
+            }
+            .owl-nav .owl-next .fa-angle-right{
+                right:10px;
+                background-color: rgba(150,150,150,.6);
+            }
+        }
+        @media screen and (max-width: 480px) {
+            h2.type-title{
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .type-introduce{font-size: 12px;}
+            .col-xxs-thumbnail-width {
+                width: 50%;
+
+            }
+            .col-xxs-thumbnail-width > .xxs-thumbnail-width{
+                margin-bottom: 10px;
+            }
+            .col-xxs-thumbnail-width:nth-of-type(even){
+                padding-left: 5px;
+            }
+            .col-xxs-thumbnail-width:nth-of-type(odd){
+                padding-right: 5px;
+            }
+            .col-xxs-thumbnail-width .caption{
+                font-size: 12px;
+                text-align: center;
+            }
+            .col-xxs-thumbnail-width .caption>span.name{
+                margin-right: 0;
+                font-size: 18px;
+            }
+            .col-xxs-thumbnail-width .caption>a.view{display: none}
+
+        }
+    </style>
+</head>
+<body>
+<include file="Index/nav" />
+
+<div class="container-fluid" >
+    <div class="row">
+        <div class="center-block"><img src="__PUBLIC__/img/home/products-type-bg.jpg" alt="led linear lights" class="img-responsive center-block" /></div>
+    </div>
+</div>
+<!--products type banner -->
+<div class="container owl-nav-container" style="margin: 20px auto;">
+    <div class="owl-carousel">
+        <foreach name="typeBanner" item="vo" >
+            <div class="img-responsive  center-block">
+                <a href="{:U('Products/type','id='.$vo[id])}" title='{$vo.name}'>
+                    <img src="{$vo.thumb}" alt="" class="img-responsive">
+                </a>
+            </div>
+            <if condition="$vo[id] eq 3">
+                <!--这里多了一张led-troffers-lt1c-series 图片，是额外添加的-->
+                <div class="img-responsive  center-block">
+                    <a href="{:U('Products/type','id=3')}" title='led troffers lights'>
+                        <img src="__PUBLIC__/img/home/led-troffers-lt1c.jpg" alt="led troffers lights"
+                             class="img-responsive">
+                    </a>
+                </div>
+            </if>
+        </foreach>
+    </div>
+    <!--前进后退按钮-->
+    <div class="owl-nav"> </div>
+</div>
+<div class="container">
+    <!--面包屑导航-->
+    <div class="row">
+        <div class="col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="{:U('Products/index')}">Products</a></li>   
+                <li class='active'>{$type.name}</li>
+            </ol> 
+        </div>
+    </div>
+    <!--产品类型介绍-->
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h2 class="type-title">WHY WE LOVE <span class="text-uppercase">{$type.name}</span></h2>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <!--产品类型介绍-->
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <p class="type-introduce">{$type.introduce}</p>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
+<!--产品列表-->
+<div class="container" style="margin: 60px auto;">
+    <div class="row" >
+        <foreach name="products" item="product">
+
+            <div class=" col-sm-4 col-xs-6 col-xxs-thumbnail-width">
+                <div class="thumbnail thumbnail-bg  xxs-thumbnail-width center-block ">
+                    <a href="{:U('Products/product','id='.$product[products_id])}" title='{$type.name} | {$product.name}'><img class="img-responsive" src="{$product.thumb}" alt=""></a>
+                    <div class="caption">
+                        <span>{$type.name}</span>
+                        <br>
+                        <span  class='name'>{$product.name}</span>
+                        <a class='view' href="{:U('Products/product','id='.$product[products_id])}" title='{$product.name}'>VIEW MORE</a>
+                    </div>
+                </div>
+            </div>
+            
+        </foreach>
+    </div>
+</div>
+
+
+
+<div class="bottom-container">
+    <include file="Index/bottom"/>
+    <include file="Index/share"/>
+</div>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__PUBLIC__/js/Home/jquery.goup.js"></script>
+
+<!--本页面特有js 轮播banner插件js-->
+<script src="__PUBLIC__/owl.carousel.2.0.0-beta.2.4/owl.carousel.min.js"></script>  
+<script type="text/javascript">
+    $(function () {
+
+        //banner配置        
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            dots: false,
+            navContainer: '.owl-nav',
+            navText: ['<i class="fa fa-angle-left fa-4x"></i>', '<i class="fa fa-angle-right fa-4x"></i>'], //前进、后退 按钮 的内容
+            //响应式配置
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                320: {
+                    items: 2,
+                    margin: 5,
+                    nav: true
+                },
+                480: {
+                    items: 3,
+                    margin: 5,
+                    nav: true
+                },
+                768: {
+                    items: 3,
+                    margin: 7,
+                    nav: true
+                },
+                992: {
+                    items: 3,
+                    margin: 10,
+                    nav: true
+                }
+            }
+        });
+    });
+</script>
+
+<include file="Index/footer"/>

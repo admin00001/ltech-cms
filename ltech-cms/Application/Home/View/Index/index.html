@@ -1,0 +1,154 @@
+<include file="Index/header" />
+<include file="Index/nav" />        
+<!-- banner -->
+<div class="banner-container">
+    <div class="owl-carousel">
+        <foreach name="banners" item="vo" >
+            <div class="img-responsive center-block banner">
+                <a href="{:U('Products/index')}" title='products'>
+                    <picture>
+
+                        <source srcset="{$vo.img_lg}" media="(min-width:1200px)" class="img-responsive"></source>
+                        <source srcset="{$vo.img_md}" media="(min-width:800px)" class="img-responsive"></source>
+                        <source srcset="{$vo.img_sm}" media="(min-width:480px)" class="img-responsive"></source>
+                        <img src="{$vo.img_xs}" alt="" class="img-responsive">
+
+                    </picture>
+                </a>
+            </div>
+        </foreach>
+    </div>
+</div>
+<!--中间五图-->
+<div class='container-fluid' style="background-color: #fafafa;">
+    <div class="row">
+        <!--中间五图 容器-->
+        <div class='advcontainer center-block clearfix'>
+            <!--左边4个盒子-->
+            <div class="adv-left-box center-block clearfix" >
+                <volist name='advs' id='adv' key='k' offset="0" length="4">
+                    <div class="adv-item center-block ">
+                        <a  <if condition="$k eq 1">href="{:U('products/index')}"<else/> href="{:U('products/type','id='.$adv[type])}"</if> title="{$adv.title}" ><img class="box-shadow img-responsive" src='{$adv.thumb}' alt='{$adv.name}'></a>
+                        <figcaption>
+                            <p class='text-uppercase text-center title' style="color:{$adv.title_color}">{$adv.title}</p>
+                            <p class=' text-center description' style="color:{$adv.description_color}">{$adv.description}</p>
+                        </figcaption>
+                    </div>
+
+                </volist>
+            </div>
+            <!--右边1个盒子-->
+            <div class="adv-right-box center-block  ">
+                <a href="{:U('products/type','id='.$advs[4][type])}"  title="{$advs[4].title}"><img class='img-responsive center-block box-shadow ' src="{$advs[4]['thumb']}" alt="{$advs[4]['name']} {$advs[4]['title']}"></a>
+                <figcaption>
+                    <p class='text-uppercase text-center title' style="color:{$advs[4].title_color}">{$advs[4].title}</p>
+                    <p class='text-center description' style="color:{$advs[4].description_color}">{$advs[4].description}</p>
+                </figcaption>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--底部背景容器-->
+<div class="bottom-container">
+    <!--四个栏目容器-->
+    <div class="item-container center-block clearfix">
+        <div class="item-wrapper">
+            <!--news栏目-->
+            <div class="item ">
+                <div class="img-box">
+                    <a href="{:U('News/detail?id='.$news[0][news_id])}" title="{$news[0].title}"><img class="img-responsive" src="{$news[0].thumb}" alt="{$news[0].title}"></a>
+                </div>
+                <div class="content">
+                    <h2 class="title">NEWS</h2>
+                    <p class="description">{$news[0].description}</p>
+                    <span class="date">{$news[0].create_time|date="Y-m-d",###}</span>
+                    <a href="{:U('News/index')}" target="_blank" class="btn " title="news">MORE NEWS >></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="item-wrapper">
+            <!--NEW产品推荐-->
+            <div class="item">
+                <img class="new" src="__PUBLIC__/img/home/new.png" alt="new">
+                <div class="img-box">
+                    <!--<a href="{:U('Products/product?id='.$new[products_id])}" title="{$new.name}"><img class="img-responsive" src="{$new.thumb}" alt="{$new.name}"></a>-->
+                    <a href="/Products/linear_lights.html" title="linear-lights">
+                        <img class="img-responsive" src="{$new.thumb}" alt="{$new.name}">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2 class="title">LATEST</h2>
+                    <a href="{:U('Products/type?id='.$new[type])}" title="{$new.type|getTypeName = $productsType,###}"><span class ="name" >{$new.type|getTypeName = $productsType,###}</span></a>
+                    <!--<p class="description" >{$new.name}</p> -->
+                    <p class="description" >L-Linear-Lights</p>
+                    <a href="{:U('Products/index')}" target="_blank" class="btn " title="products">ALL PRODUCTS >></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="item-wrapper">
+            <!--projects栏目-->
+            <div class="item ">
+                <div class="img-box">
+                    <a href="{:U('Projects/detail?id='.$projects[0][projects_id])}" target="_blank" title="{$projects[0].name}">
+                        <img class="img-responsive" src="{$projects[0].thumb}" alt="{$projects[0].name}">
+                    </a>
+                </div>
+                <div class="content">
+                    <h2 class="title">PROJECTS</h2>
+                    <a href="{:U('Projects/detail?id='.$projects[0][projects_id])}" target="_blank" title="{$projects[0].name}">
+                        <span class="name" >{$projects[0].name}</span>
+                    </a>
+                    <p class="description" > {$projects[0].description}</p>
+                    <a href="{:U('Projects/index')}" target="_blank" class="btn " title="PROJECTS ">MORE PROJECTS >></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="item-wrapper">
+            <!--catalogue栏目 下载-->
+            <div class="item catalogue-item">
+                <a href="{$catalogue.path}" target="_blank" title="catalogue"><img class=" img-responsive catalogue-img" alt="catalogue" src="__PUBLIC__/img/home/catalogue.jpg" ></a>
+            </div>
+        </div>
+
+
+    </div>
+    <include file="Index/bottom" />
+    <include file="Index/share" />
+</div>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js"></script>
+<script src="__PUBLIC__/js/Home/jquery.goup.js"></script>
+<!--本页面特有js 轮播banner插件js-->
+<script src="__PUBLIC__/owl.carousel.2.0.0-beta.2.4/owl.carousel.min.js"></script>  
+<script src="__PUBLIC__/owl.carousel.2.0.0-beta.2.4/picturefill.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //banner配置        
+        $(".owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true
+        });
+    });
+</script>
+<include file="Index/footer" />   
+
+
+
+
+
+
+
+
+
+

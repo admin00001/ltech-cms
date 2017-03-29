@@ -1,0 +1,17 @@
+<?php
+$listdata = array('status' => 1);
+$limit = 10;
+$list = D("Projects")->select($listdata,$limit);
+?>
+<div class="border">
+    <div class="news-list text-center">LASTEST PROJECT</div>
+    <foreach name="list" item="list">
+        <div class="list">
+            <div class="content-box">
+                <a class="content" href="{:U('Projects/detail',array(id =>$list[projects_id] ))}" title="{$list.name}">{$list.name}</a>
+                <a class="icon" href="{:U('Projects/detail',array(id =>$list[projects_id]))}" title="{$list.name}"><i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+
+    </foreach>
+</div>
