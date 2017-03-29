@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /Download
-Disallow: /Admin
-Disallow: /admin
-Disallow: /Home/Search
-Disallow: /Search
-
-Sitemap: http://www.ltechlighting.com/sitemap.xml
